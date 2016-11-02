@@ -1,3 +1,5 @@
-import { MongoObservable } from 'meteor-rxjs';
+import {MongoObservable} from 'meteor-rxjs';
 
-export const Parties = new MongoObservable.Collection('parties');
+import {Party} from '/both/models/party.model';
+
+export const Parties = new MongoObservable.Collection<Party>('parties');
