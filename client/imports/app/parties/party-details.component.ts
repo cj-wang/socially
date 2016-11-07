@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import 'rxjs/add/operator/map';
 
-import {Parties} from '../../../../both/collections/parties.collection';
-import {Party} from '../../../../both/models/party.model';
+import { Parties } from '../../../../both/collections/parties.collection';
+import { Party } from '../../../../both/models/party.model';
 
 import template from './party-details.component.html';
 

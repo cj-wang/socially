@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import {Parties} from '../../../../both/collections/parties.collection';
+import { Parties } from '../../../../both/collections/parties.collection';
 
 import template from './parties-form.component.html';
 
