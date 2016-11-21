@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Meteor } from 'meteor/meteor';
+import { MeteorObservable } from 'meteor-rxjs';
 
 import 'rxjs/add/operator/map';
 
@@ -18,6 +19,7 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
   partyId: string;
   paramsSub: Subscription;
   party: Party;
+  partySub: Subscription;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -27,12 +29,20 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
       .map(params => params['partyId'])
       .subscribe(partyId => {
         this.partyId = partyId;
-        this.party = Parties.findOne(this.partyId);
+        
+        if (this.partySub) {
+          this.partySub.unsubscribe();
+        }
+ 
+        this.partySub = MeteorObservable.subscribe('party', this.partyId).subscribe(() => {
+          this.party = Parties.findOne(this.partyId);
+        });
       });
   }
 
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
+    this.partySub.unsubscribe();
   }
 
   saveParty() {
